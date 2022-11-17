@@ -16,8 +16,17 @@ class AuthController extends Controller
     public function deleteUser(Request $request){
         $output = "";
         $delete = User::find($request->id);
-        $delete->delete();
+        $output = '
+            <input type="hidden" value="'.$delete->id.'" name="userId">
+            <div class="modal-title h4">DELETE USER <b>'.$delete->first_name.' '.$delete->last_name.'</b></div> <button type="button" class="btn-close" aria-label="Close"></button>
+
+        ';
         return response($output);
+    }
+    public function dUser(Request $request){
+        $delete = User::find($request->userId);
+        $delete->delete();
+        return redirect()->back()->with('success','USER DELETED SUCCESS');
     }
     public function Log(Request $request){
         $user = User::where('phone',$request->phone)->first();

@@ -26,6 +26,7 @@ Route::get('users', [App\Http\Controllers\AuthController::class, 'users']);
 Route::get('deleteUser', [App\Http\Controllers\AuthController::class, 'deleteUser']);
 Route::get('editUser/{id}', [App\Http\Controllers\AuthController::class, 'editUser']);
 Route::post('storeUsers', [App\Http\Controllers\AuthController::class, 'storeUsers']);
+Route::post('dUser', [App\Http\Controllers\AuthController::class, 'dUser']);
 Route::post('eUsers', [App\Http\Controllers\AuthController::class, 'eUsers']);
 Route::post('storeUsers', [\App\Http\Controllers\AuthController::class, 'storeUsers']);
 Route::post('Log', [\App\Http\Controllers\AuthController::class, 'Log']);

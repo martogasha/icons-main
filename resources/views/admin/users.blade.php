@@ -44,7 +44,7 @@
                                                     <a href="{{url('editUser',$user->id)}}" data-placement="top" title="Edit" data-original-title="Edit">
                                                         <i class="icon-edit1 text-info"></i>
                                                     </a>
-                                                        <a href="#" class="delete" id="{{$user->id}}" data-bs-toggle="modal" data-bs-target="#deleteUser" data-placement="top" title="Delete" data-original-title="Delete">
+                                                        <a href="#" class="delete" id="{{$user->id}}" data-bs-toggle="modal" data-bs-target="#deleteUser">
                                                             <i class="icon-x-circle text-danger"></i>
                                                         </a>
                                                 </div>
@@ -56,10 +56,17 @@
                                     <!-- Button trigger modal -->
                                 </div>
                                 <!-- Modal -->
-                                <div id="viewStock" role="dialog" aria-modal="true" class="fade modal" tabindex="-1">
+                                <div id="deleteUser" role="dialog" aria-modal="true" class="fade modal" tabindex="-1">
                                     <div class="modal-dialog">
-                                        <div class="modal-content" id="basic1">
-
+                                        <div class="modal-content">
+                                            <form action="{{url('dUser')}}" method="post">
+                                                @csrf
+                                                <div class="modal-header" style="background-color: red" id="basicH">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -79,21 +86,7 @@
 
         </div>
         <!-- Content wrapper scroll end -->
-<div id="deleteUser" role="dialog" aria-modal="true" class="fade modal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="{{url('dUser')}}" method="post">
-                @csrf
-                <div class="modal-header" style="background-color: red" id="basic">
-                </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Delete</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-    </div>
+
     <!-- *************
         ************ Main container end *************
     ************* -->
@@ -155,7 +148,7 @@
             url:"{{url('deleteUser')}}",
             data:{'id':$value},
             success:function (data) {
-                $('#basic').html(data);
+                $('#basicH').html(data);
             },
             error:function (error) {
                 console.log(error)
